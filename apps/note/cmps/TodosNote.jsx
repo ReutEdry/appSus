@@ -1,16 +1,15 @@
 import { noteService } from '../services/noteService.service.js'
 
-export function TodosNote({ info }) {
+export function TodosNote({ info, id: noteId }) {
     const { title, todos } = info
 
     function toTodoClick(id) {
-        console.log(id)
+        // console.log(id)
     }
 
     function onRemoveTodo(event, todos, todoId) {
         event.stopPropagation()
-        noteService.removeTodo(todos, todoId)
-
+        noteService.removeTodo(todos, todoId, noteId)
     }
 
     return (
@@ -22,11 +21,7 @@ export function TodosNote({ info }) {
                         <button onClick={(event) => onRemoveTodo(event, todos, todo.id)}>x</button></li>)
                 }
             </ul>
-            <button>delete</button>
-            <button>update</button>
-            <button>bgc color</button>
-            <button>pin</button>
-            <button>send to email</button>
+
         </section >
     )
 }

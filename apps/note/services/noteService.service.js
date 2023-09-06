@@ -7,7 +7,8 @@ _createNotes()
 
 export const noteService = {
     query,
-    removeTodo
+    removeTodo,
+    deleteNote
 }
 
 query()
@@ -16,11 +17,20 @@ function query() {
         .then(notes => { return notes })
 }
 
-function removeTodo(todos, todoId) {
-    console.log(todos)
-    const todoIdx = todos.findIndex(todo => todo.id === todoId)
-    todos.splice(todoIdx, 1)
-    asyncStorageService.put(NOTES_KEY, todos)
+function deleteNote(noteId) {
+
+}
+
+function removeTodo(todoId, noteId) {
+    return asyncStorageService.get(NOTES_KEY, noteId)
+        .then(res => {
+            const todos = res.info.todos
+            const todoIdx = todos.findIndex(todo => todo.id === todoId)
+            if (todoIdx !== -1) {
+                todos.splice(todoIdx, 1)
+                return asyncStorageService.put(NOTES_KEY, res)
+            }
+        })
 }
 
 function _createNotes() {
