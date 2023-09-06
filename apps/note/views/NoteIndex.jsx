@@ -1,3 +1,4 @@
+import { DynamicNote } from "../cmps/DynamicNote.jsx"
 import { noteService } from "../services/noteService.service.js"
 
 const { useState, useEffect } = React
@@ -5,7 +6,7 @@ const { useState, useEffect } = React
 
 export function NoteIndex() {
     const [notes, setNotes] = useState([])
-
+    // const []/
     useEffect(() => {
         noteService.query()
             .then(setNotes)
@@ -16,6 +17,11 @@ export function NoteIndex() {
     if (!notes) return <div className="loading notes"></div>
     return (
 
-        <div>note app</div>
+        <div>
+            <DynamicNote />
+        </div>
+
     )
 }
+
+
