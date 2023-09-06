@@ -1,12 +1,16 @@
+import { ImgNote } from "./ImgNote.jsx";
+import { TodosNote } from "./TodosNote.jsx";
+import { TxtNote } from "./TxtNote.jsx";
+
+
 export function DynamicNote(props) {
-    console.log(props);
     switch (props.type) {
-        case 'TextBox':
-            return <RateByTextbox {...props} label="RateByTextbox" />;
-        case 'SelectBox':
-            return <SelectBox {...props} label="Select Rating" opts={['1', '2', '3', '4', '5']} />;
-        case 'RateByStars':
-            return <RateByStars {...props} />;
+        case 'NoteTxt':
+            return <TxtNote {...props} />;
+        case 'NoteImg':
+            return <ImgNote {...props} />;
+        case 'NoteTodos':
+            return <TodosNote {...props} />;
         default:
             return null;
     }

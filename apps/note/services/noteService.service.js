@@ -1,17 +1,26 @@
 import { storageService } from '../../../services/storage.service.js'
 import { asyncStorageService } from '../../../services/async-storage.service.js'
+import { utilService } from '../../../services/util.service.js'
 
 const NOTES_KEY = 'notesDB'
 _createNotes()
 
 export const noteService = {
-    query
+    query,
+    removeTodo
 }
 
 query()
 function query() {
     return asyncStorageService.query(NOTES_KEY)
         .then(notes => { return notes })
+}
+
+function removeTodo(todos, todoId) {
+    console.log(todos)
+    const todoIdx = todos.findIndex(todo => todo.id === todoId)
+    todos.splice(todoIdx, 1)
+    asyncStorageService.put(NOTES_KEY, todos)
 }
 
 function _createNotes() {
@@ -42,7 +51,7 @@ function getDemoData() {
             type: 'NoteImg',
             isPinned: false,
             info: {
-                url: 'http://some-img/me',
+                url: 'https://loremflickr.com/g/320/240/paris,girl/all',
                 title: 'Bobi and Me'
             },
             style: {
@@ -56,8 +65,8 @@ function getDemoData() {
             info: {
                 title: 'Get my stuff together',
                 todos: [
-                    { txt: 'Driving license', doneAt: null },
-                    { txt: 'Coding power', doneAt: 187111111 }
+                    { id: utilService.makeId(), txt: 'Driving license', doneAt: null },
+                    { id: utilService.makeId(), txt: 'Coding power', doneAt: 187111111 }
                 ]
             }
         }
