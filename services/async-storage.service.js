@@ -40,8 +40,10 @@ function put(entityType, updatedEntity) {
 }
 
 function remove(entityType, entityId) {
+    console.log('entityId:', entityId)
     return query(entityType).then(entities => {
         const idx = entities.findIndex(entity => entity.id === entityId)
+        console.log('idx:', idx)
         if (idx < 0) throw new Error(`Remove failed, cannot find entity with id: ${entityId} in: ${entityType}`)
         entities.splice(idx, 1)
         _save(entityType, entities)

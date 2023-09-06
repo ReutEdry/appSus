@@ -1,12 +1,11 @@
- /* mail index  */
-
+ 
+ 
  * {
      box-sizing: border-box;
  }
 
  .mails-container {
-    width: 100%;
-  
+    width: 80vw;
     margin: 0 auto;
     padding: 1rem;
     font-family: Arial, sans-serif;
