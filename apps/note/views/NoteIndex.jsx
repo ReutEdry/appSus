@@ -1,3 +1,5 @@
+import { DynamicNote } from "../cmps/DynamicNote.jsx"
+import { NoteList } from "../cmps/NoteList.jsx"
 import { noteService } from "../services/noteService.service.js"
 
 const { useState, useEffect } = React
@@ -12,10 +14,15 @@ export function NoteIndex() {
     }, [])
 
 
-    console.log('notes', notes)
+
     if (!notes) return <div className="loading notes"></div>
     return (
-
-        <div>note app</div>
+        <section className="note-container">
+            <div>
+                <NoteList notes={notes} />
+            </div>
+        </section>
     )
 }
+
+
