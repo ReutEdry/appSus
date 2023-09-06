@@ -5,13 +5,13 @@ const NOTES_KEY = 'notesDB'
 _createNotes()
 
 export const noteService = {
-
+    query
 }
 
+query()
 function query() {
-
-
-
+    return asyncStorageService.query(NOTES_KEY)
+        .then(notes => { return notes })
 }
 
 function _createNotes() {
