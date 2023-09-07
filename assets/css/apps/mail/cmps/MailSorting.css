@@ -1,0 +1,14 @@
+.sorting-container{
+    display: flex;
+    flex-direction: column;
+    /* background: white; */
+    background: rgb(195, 195, 195);
+    width: 100px;
+    /* position: absolute; */
+    align-items: center;
+    gap: 20px;
+    /* position: absolute; */
+    /* top: 200px; */
+}
+
+
