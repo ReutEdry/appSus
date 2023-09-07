@@ -5,12 +5,19 @@
  }
 
  .main-layout {
-    position: relative;
     background: #f2f6fc;
     display: grid;
     margin: 0 auto;
     padding: 5px;
     font-family: 'Roboto', RobotoDraft, Helvetica, Arial, sans-serif;
-    grid-template-columns: auto 1fr;
+    grid-template-rows: 62px 1fr;
     height: 100vh;
+}
+
+.main-layout.open {
+    grid-template-columns: 70px 1fr;
+}
+
+.main-layout.close {
+    grid-template-columns: 200px 1fr;
 }
