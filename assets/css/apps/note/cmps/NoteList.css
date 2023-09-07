@@ -5,14 +5,13 @@
  .notesList {
      display: grid;
      place-items: center;
-     /* gap: 20px; */
  }
 
  .note-container {
      columns: 4 220px;
  }
 
- .noteSelf {
+ .note-self {
      display: grid;
      break-inside: avoid;
      width: 238px;
@@ -40,7 +39,7 @@
 
  }
 
- button {
+ .edit-note-area button {
      background: none;
      color: inherit;
      border: none;

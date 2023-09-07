@@ -8,7 +8,10 @@ _createNotes()
 export const noteService = {
     query,
     removeTodo,
-    deleteNote
+    deleteNote,
+    settingIsPin,
+    getNewNote,
+    save
 }
 
 function query() {
@@ -20,6 +23,14 @@ function deleteNote(noteId) {
     return asyncStorageService.remove(NOTES_KEY, noteId)
 }
 
+function settingIsPin(noteId) {
+    return asyncStorageService.get(NOTES_KEY, noteId)
+        .then(note => {
+            note.isPinned = !note.isPinned
+            return asyncStorageService.put(NOTES_KEY, note)
+        })
+        .catch(console.log)
+}
 
 function removeTodo(todoId, noteId) {
     return asyncStorageService.get(NOTES_KEY, noteId)
@@ -31,6 +42,14 @@ function removeTodo(todoId, noteId) {
                 return asyncStorageService.put(NOTES_KEY, res)
             }
         })
+}
+
+function save(note) {
+    // if (note.id) {
+    //     return storageService.put(BOOK_KEY, note)
+    // } else {
+    return asyncStorageService.post(NOTES_KEY, note)
+    // }
 }
 
 function _createNotes() {
@@ -83,5 +102,19 @@ function getDemoData() {
     ]
 
     return notes
+}
+
+function getNewNote() {
+    return {
+        id: '',
+        type: 'NoteTxt',
+        isPinned: false,
+        info: {
+
+        },
+        style: {
+            backgroundColor: '#00d'
+        }
+    }
 }
 

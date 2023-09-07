@@ -1,4 +1,4 @@
-import { DynamicNote } from "../cmps/DynamicNote.jsx"
+import { AddNote } from "../cmps/AddNote.jsx"
 import { NoteList } from "../cmps/NoteList.jsx"
 import { noteService } from "../services/noteService.service.js"
 
@@ -8,6 +8,8 @@ export function NoteIndex() {
     const [notes, setNotes] = useState([])
     const [pinneds, setPinned] = useState([])
     const [unPinneds, setUnPinned] = useState([])
+    const [isPinned, setIsPinned] = useState(null)
+    const [isAddedNewNote, setIsAddedNewNote] = useState(null)
     const [deleteNote, setDelete] = useState(null)
 
     useEffect(() => {
@@ -15,7 +17,7 @@ export function NoteIndex() {
             .then(res => {
                 setNotes(res)
             })
-    }, [deleteNote])
+    }, [deleteNote, isPinned, isAddedNewNote])
 
     useEffect(() => {
         const pinnedNotes = notes.filter(note => {
@@ -31,14 +33,17 @@ export function NoteIndex() {
         setUnPinned(UnpinnedNotes)
     }, [notes])
 
-    if (!pinneds) return <div className="loading Pinned notes"></div>
-    if (!unPinneds) return <div className="loading unPinned notes"></div>
+    if (!pinneds) return <div className="loading Pinned notes">loading Pinned notes</div>
+    if (!unPinneds) return <div className="loading unPinned notes">loading unPinned notes</div>
     return (
-        <section className="noteArea">
-            <h1>note list</h1>
+        <section className="main-note-layout">
+            // demo of sorting:
             <section className="notesList">
-                <NoteList setDelete={setDelete} notes={pinneds} />
-                <NoteList setDelete={setDelete} notes={unPinneds} />
+                <section className="add-note-are">
+                    <AddNote setNotes={setNotes} notes={notes} />
+                </section>
+                <NoteList setIsAddedNewNote={setIsAddedNewNote} setDelete={setDelete} notes={pinneds} />
+                <NoteList setIsPinned={setIsPinned} setDelete={setDelete} notes={unPinneds} />
             </section>
         </section>
     )

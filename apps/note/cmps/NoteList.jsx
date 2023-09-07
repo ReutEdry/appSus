@@ -2,29 +2,33 @@ import { noteService } from '../services/noteService.service.js'
 import { DynamicNote } from "./DynamicNote.jsx"
 const { useState, useEffect } = React
 
-export function NoteList({ setDelete, notes }) {
-    const [notess, setNotes] = useState(notes)
+export function NoteList({ setIsPinned, setDelete, notes }) {
+    const [notesToEdit, setNotesToEdit] = useState(notes)
 
     useEffect(() => {
-        setDelete(notess)
-    }, [notess])
+        setDelete(notesToEdit)
+    }, [notesToEdit])
 
     function onDeleteNote(noteId) {
         noteService.deleteNote(noteId)
             .then(() => {
-                setNotes(prevNote =>
+                setNotesToEdit(prevNote =>
                     prevNote.filter(note => note.id !== noteId))
             })
-            .catch(err => {
-                console.log('err', err)
-            })
+            .catch(console.log)
     }
+
+    function onPinNote(noteId) {
+        noteService.settingIsPin(noteId)
+            .then(note => setIsPinned(note.isPinned))
+    }
+
+
 
     return (
         <section className="note-container">
             {
-
-                notes.map(note => <section className={`noteSelf ${note.isPinned}`} key={note.id}>
+                notes.map(note => <section className={`note-self ${note.isPinned}`} key={note.id}>
                     <section className="noteChild">
 
                         <DynamicNote id={note.id} type={note.type} info={note.info} />
@@ -42,8 +46,7 @@ export function NoteList({ setDelete, notes }) {
                                     palette
                                 </i>
                             </section>
-
-                            <button>
+                            <button onClick={() => onPinNote(note.id)}>
                                 <i className="material-icons-outlined">push_pin</i></button>
                             <button><i className="material-icons-outlined">
                                 forward_to_inbox
