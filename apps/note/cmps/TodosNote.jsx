@@ -13,15 +13,16 @@ export function TodosNote({ info, id: noteId }) {
     }
 
     return (
-        <section className="todo-container">
+        <section className="todo-container preview">
             <h2>{title}</h2>
-            <ul className="todoP preview">
+            <ul className="todoP">
                 {
                     todos.map(todo => <li key={todo.id} onClick={() => toTodoClick(todo.id)}>{todo.txt}
-                        <button onClick={(event) => onRemoveTodo(event, todos, todo.id)}>x</button></li>)
+                        <button onClick={(event) => onRemoveTodo(event, todos, todo.id)}><i className="material-icons-outlined">
+                            close
+                        </i></button></li>)
                 }
             </ul>
-
         </section >
     )
 }

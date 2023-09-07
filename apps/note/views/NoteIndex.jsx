@@ -4,23 +4,44 @@ import { noteService } from "../services/noteService.service.js"
 
 const { useState, useEffect } = React
 
-
 export function NoteIndex() {
     const [notes, setNotes] = useState([])
+    const [pinneds, setPinned] = useState([])
+    const [unPinneds, setUnPinned] = useState([])
+    const [deleteNote, setDelete] = useState(null)
 
     useEffect(() => {
         noteService.query()
-            .then(setNotes)
-    }, [])
+            .then(res => {
+                setNotes(res)
+            })
+    }, [deleteNote])
+
+    useEffect(() => {
+        const pinnedNotes = notes.filter(note => {
+            return note.isPinned
+        })
+        setPinned(pinnedNotes)
+    }, [notes])
+
+    useEffect(() => {
+        const UnpinnedNotes = notes.filter(note => {
+            return !note.isPinned
+        })
+        setUnPinned(UnpinnedNotes)
+    }, [notes])
 
 
 
-    if (!notes) return <div className="loading notes"></div>
+    if (!pinneds) return <div className="loading Pinned notes"></div>
+    if (!unPinneds) return <div className="loading unPinned notes"></div>
     return (
-        <section className="note-container">
-            <div>
-                <NoteList notes={notes} />
-            </div>
+        <section className="noteArea">
+            <h1>note list</h1>
+            <section className="notesList">
+                <NoteList setDelete={setDelete} notes={pinneds} />
+                <NoteList setDelete={setDelete} notes={unPinneds} />
+            </section>
         </section>
     )
 }

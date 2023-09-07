@@ -11,15 +11,16 @@ export const noteService = {
     deleteNote
 }
 
-query()
 function query() {
     return asyncStorageService.query(NOTES_KEY)
         .then(notes => { return notes })
 }
 
 function deleteNote(noteId) {
-
+    console.log(noteId)
+    return asyncStorageService.remove(NOTES_KEY, noteId)
 }
+
 
 function removeTodo(todoId, noteId) {
     return asyncStorageService.get(NOTES_KEY, noteId)
