@@ -34,10 +34,10 @@ export function MailIndex() {
     }
 
 
-    if (!mails.length) return <div>Loading...</div>;
+    // if (!mails.length) return <div>Loading...</div>;
     return (
         <section className="main-layout">
-            <MailSorting/>
+            <MailSorting />
         <section className="mails-container">
             <header className="main-mail-header">
                 <article class="mail-logo">
@@ -47,7 +47,8 @@ export function MailIndex() {
                 </article>
                 <SearchFilter filterBy={filterBy} onSetFilterBy={onSetFilterBy}/>
             </header>
-            <MailList mails={mails} onRemoveMail={onRemoveMail} onStarSelect={onStarSelect} />
+            <MailList setMail={setMails} mails={mails} onRemoveMail={onRemoveMail} onStarSelect={onStarSelect} />
+            
         </section>
         </section>
     )

@@ -40,6 +40,8 @@ function put(entityType, updatedEntity) {
 }
 
 function remove(entityType, entityId) {
+    console.log(entityId)
+
     console.log('entityId:', entityId)
     return query(entityType).then(entities => {
         const idx = entities.findIndex(entity => entity.id === entityId)

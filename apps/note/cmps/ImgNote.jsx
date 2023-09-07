@@ -1,3 +1,5 @@
+const { Fragment } = React
+
 export function ImgNote({ info }) {
     const { title, url } = info
 

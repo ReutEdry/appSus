@@ -1,23 +1,51 @@
+import { noteService } from '../services/noteService.service.js'
 import { DynamicNote } from "./DynamicNote.jsx"
+const { useState, useEffect } = React
 
+export function NoteList({ setDelete, notes }) {
+    const [notess, setNotes] = useState(notes)
 
-export function NoteList({ notes }) {
+    useEffect(() => {
+        setDelete(notess)
+    }, [notess])
 
     function onDeleteNote(noteId) {
-        console.log(noteId)
+        noteService.deleteNote(noteId)
+            .then(() => {
+                setNotes(prevNote =>
+                    prevNote.filter(note => note.id !== noteId))
+            })
+            .catch(err => {
+                console.log('err', err)
+            })
     }
 
     return (
-        <section>
-            <h1>note list</h1>
+        <section className="note-container">
             {
-                notes.map(note => <section key={note.id}>
+                notes.map(note => <section className={`noteSelf ${note.isPinned}`} key={note.id}>
                     <DynamicNote id={note.id} type={note.type} info={note.info} />
-                    <button onClick={() => onDeleteNote(note.id)}>delete</button>
-                    <button>update</button>
-                    <button>bgc color</button>
-                    <button>pin</button>
-                    <button>send to email</button>
+                    <section className="edit-note-area">
+                        <button onClick={() => onDeleteNote(note.id)}>
+                            <i className="material-icons-outlined">delete</i>
+                        </button>
+                        <button><i className="material-icons-outlined">
+                            upgrade
+                        </i></button>
+
+                        <section className="note-bgc">
+                            <input className="note-bgc-input" type="color" />
+                            <i className="material-icons-outlined note-palette">
+                                palette
+                            </i>
+                        </section>
+
+                        <button>
+                            <i className="material-icons-outlined">push_pin</i></button>
+                        <button><i className="material-icons-outlined">
+                            forward_to_inbox
+                        </i></button>
+                    </section>
                 </section>
                 )
             }
