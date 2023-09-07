@@ -39,7 +39,7 @@ export function MailList({mails, onRemoveMail, onStarSelect}) {
  
 
 
-    return (
+    return (        
         <ul className="mails-list">
         <select id="mail-dropdown" onChange={(ev)=>handleChange(ev)}>
             <option value=""></option>
@@ -54,12 +54,16 @@ export function MailList({mails, onRemoveMail, onStarSelect}) {
                                     star
                                 </span>
                             </span>
-                        <MailPreview key={mail.id} mail={mail} />
-                        <button className="delete-btn" onClick={()=> {onRemoveMail(mail.id)}}><span><i className="material-icons-outlined">delete</i></span></button>
+                        <button className="delete-btn" onClick={()=> {onRemoveMail(mail.id)}}>
+                            <span class="material-symbols-outlined">
+                                delete
+                            </span>
+                        </button>
                     </article>
+                    <MailPreview key={mail.id} mail={mail} />
                 </li>              
             ))}
-        </ul>
+        </ul>    
     )
 }
 

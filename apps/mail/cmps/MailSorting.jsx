@@ -1,32 +1,42 @@
 const {useState, useEffect} = React
 
-export function MailSorting(){
+
+
+export function MailSorting({toggleToolBar}){
     return (
         <section className='sorting-container'>
-            <div>
+            <ul className="sorting-list">
+            <li className="compose">
+                <span class="material-symbols-outlined">
+                    edit
+                </span>
+                {!toggleToolBar && "Compose"}
+            </li>
+            <li>
                 <span class="material-symbols-outlined">
                     inbox
                 </span>
-                Inbox
-            </div>
-            <div>
+                {!toggleToolBar && "Inbox"}
+            </li>
+            <li>
                 <span class="material-symbols-outlined">
                     star
                 </span>
-                Starred
-            </div>
-            <div>
+                {!toggleToolBar && "Starred"}
+            </li>
+            <li>
             <span class="material-symbols-outlined">
                 send
             </span>  
-                Sent   
-            </div>
-            <div>
+                {!toggleToolBar && "Sent"}
+            </li>
+            <li>
             <span class="material-symbols-outlined">
                 delete
             </span>
-                Delete
-            </div>
+                {!toggleToolBar && "Trash"}
+            </li>
+            </ul>
         </section>
     )
 }

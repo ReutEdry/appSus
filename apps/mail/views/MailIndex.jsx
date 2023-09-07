@@ -8,6 +8,8 @@ import { MailSorting } from '../cmps/MailSorting.jsx';
 export function MailIndex() {
     const [mails, setMails] = useState([])
     const [filterBy,setFilterBy] = useState(mailService.getDefaultFilter())
+    const [toggleToolBar, setToggle] = useState(false)
+    
 
     useEffect(() => {
         mailService.query(filterBy)
@@ -33,24 +35,27 @@ export function MailIndex() {
         setFilterBy(prevFilter => ({ ...prevFilter, ...filterBy }))
     }
 
+    function toggleFolders(){
+        setToggle(!toggleToolBar)
+    }
 
-    // if (!mails.length) return <div>Loading...</div>;
+
     return (
-        <section className="main-layout">
-            <MailSorting />
-        <section className="mails-container">
+
+        <section className={ `main-layout ${toggleToolBar ? 'open' : 'close'}`}>
+            <MailSorting toggleToolBar={toggleToolBar} />
             <header className="main-mail-header">
                 <article class="mail-logo">
-                    <i class="fa-solid fa-bars"></i>
+                    <button onClick={toggleFolders}><i class="fa-solid fa-bars"></i></button>
                     <img className="logo-img" src="https://www.logo.wine/a/logo/Gmail/Gmail-Logo.wine.svg" alt="" />
-                    <h1>Gmail</h1>
+                    <span>Gmail</span>
                 </article>
                 <SearchFilter filterBy={filterBy} onSetFilterBy={onSetFilterBy}/>
             </header>
             <MailList setMail={setMails} mails={mails} onRemoveMail={onRemoveMail} onStarSelect={onStarSelect} />
             
         </section>
-        </section>
+       
     )
 }
 
