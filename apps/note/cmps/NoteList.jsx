@@ -23,28 +23,32 @@ export function NoteList({ setDelete, notes }) {
     return (
         <section className="note-container">
             {
+
                 notes.map(note => <section className={`noteSelf ${note.isPinned}`} key={note.id}>
-                    <DynamicNote id={note.id} type={note.type} info={note.info} />
-                    <section className="edit-note-area">
-                        <button onClick={() => onDeleteNote(note.id)}>
-                            <i className="material-icons-outlined">delete</i>
-                        </button>
-                        <button><i className="material-icons-outlined">
-                            upgrade
-                        </i></button>
+                    <section className="noteChild">
 
-                        <section className="note-bgc">
-                            <input className="note-bgc-input" type="color" />
-                            <i className="material-icons-outlined note-palette">
-                                palette
-                            </i>
+                        <DynamicNote id={note.id} type={note.type} info={note.info} />
+                        <section className="edit-note-area">
+                            <button onClick={() => onDeleteNote(note.id)}>
+                                <i className="material-icons-outlined">delete</i>
+                            </button>
+                            <button><i className="material-icons-outlined">
+                                upgrade
+                            </i></button>
+
+                            <section className="note-bgc">
+                                <input className="note-bgc-input" type="color" />
+                                <i className="material-icons-outlined note-palette">
+                                    palette
+                                </i>
+                            </section>
+
+                            <button>
+                                <i className="material-icons-outlined">push_pin</i></button>
+                            <button><i className="material-icons-outlined">
+                                forward_to_inbox
+                            </i></button>
                         </section>
-
-                        <button>
-                            <i className="material-icons-outlined">push_pin</i></button>
-                        <button><i className="material-icons-outlined">
-                            forward_to_inbox
-                        </i></button>
                     </section>
                 </section>
                 )

@@ -31,8 +31,6 @@ export function NoteIndex() {
         setUnPinned(UnpinnedNotes)
     }, [notes])
 
-
-
     if (!pinneds) return <div className="loading Pinned notes"></div>
     if (!unPinneds) return <div className="loading unPinned notes"></div>
     return (

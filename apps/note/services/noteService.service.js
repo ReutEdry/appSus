@@ -17,7 +17,6 @@ function query() {
 }
 
 function deleteNote(noteId) {
-    console.log(noteId)
     return asyncStorageService.remove(NOTES_KEY, noteId)
 }
 

@@ -2,21 +2,44 @@
      box-sizing: border-box;
  }
 
+ .notesList {
+     display: grid;
+     place-items: center;
+     /* gap: 20px; */
+ }
+
  .note-container {
      columns: 4 220px;
-     column-gap: 12px;
-     margin-block-start: 20px;
  }
 
  .noteSelf {
+     display: grid;
+     justify-content: space-between;
+
      break-inside: avoid;
-     width: 200px;
-     min-height: 200px;
+     width: 238px;
+     border-radius: 5px;
+     border: 1px solid lightslategrey;
+     margin: 16px;
  }
 
- .notesList>* {
+ .noteChild {
+     min-height: 200px;
+     justify-content: space-between;
+     display: flex;
+     flex-direction: column;
      padding: 10px;
-     max-height: max-content;
+ }
+
+ .imgNote {
+     width: 100%;
+ }
+
+
+ .edit-note-area {
+     display: flex;
+     justify-content: space-evenly;
+
  }
 
  button {
