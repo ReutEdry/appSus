@@ -18,9 +18,15 @@ export function MailSorting(){
             <div>
             <span class="material-symbols-outlined">
                 send
-            </span>     
+            </span>  
+                Sent   
             </div>
-            <div>Trash</div>
+            <div>
+            <span class="material-symbols-outlined">
+                delete
+            </span>
+                Delete
+            </div>
         </section>
     )
 }

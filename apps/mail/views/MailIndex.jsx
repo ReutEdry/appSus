@@ -42,7 +42,7 @@ export function MailIndex() {
             <header className="main-mail-header">
                 <article class="mail-logo">
                     <i class="fa-solid fa-bars"></i>
-                    <img src="https://www.logo.wine/a/logo/Gmail/Gmail-Logo.wine.svg" alt="" />
+                    <img className="logo-img" src="https://www.logo.wine/a/logo/Gmail/Gmail-Logo.wine.svg" alt="" />
                     <h1>Gmail</h1>
                 </article>
                 <SearchFilter filterBy={filterBy} onSetFilterBy={onSetFilterBy}/>
