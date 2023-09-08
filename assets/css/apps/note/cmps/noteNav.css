@@ -1,0 +1,32 @@
+.sorting-note-list {
+    position: sticky;
+    top: 80px;
+    padding: 0;
+    margin: 0;
+    list-style-type: none;
+    display: flex;
+    flex-direction: column;
+    /* align-items: center; */
+    justify-items: center;
+}
+
+.sorting-note-list li {
+    display: grid;
+    grid-template-columns: 0.4fr 1fr;
+    cursor: pointer;
+    margin: 0 0 0.5em;
+    padding-left: 20px;
+    justify-items: start;
+    align-items: center;
+    font-size: 14px;
+    margin-top: 20px;
+}
+
+.sorting-note-list li:hover {
+    background-color: #dadada;
+    min-width: 40px;
+    max-width: 240px;
+    height: 2rem;
+    border-top-right-radius: 555px;
+    border-bottom-right-radius: 555px;
+}

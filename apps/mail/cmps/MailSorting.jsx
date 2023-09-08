@@ -1,18 +1,18 @@
-const {useState, useEffect} = React
+const { useState, useEffect } = React
 import { mailService } from "../services/mail.service.js"
 import { MailCompose } from "./MailCompose.jsx"
 
 
-export function MailSorting({toggleToolBar, setMails}){
+export function MailSorting({ toggleToolBar, setMails }) {
     const [setActive, onSetActive] = useState(null)
     const [setCompose, isComposeOpen] = useState(false)
-    
 
-    function onSetMails(val){
+
+    function onSetMails(val) {
         let mails
         switch (val) {
             case 'deleted':
-                mails =  mailService.getDeletedMails()
+                mails = mailService.getDeletedMails()
                 setMails(mails)
                 onSetActive(val)
                 break;
@@ -42,7 +42,7 @@ export function MailSorting({toggleToolBar, setMails}){
 
     return ( 
         <section className='sorting-container'>
-            {setCompose && <MailCompose isComposeOpen={isComposeOpen}/>}
+            {setCompose && <MailCompose isComposeOpen={isComposeOpen} />}
             <ul className="sorting-list">
             <li className="compose" onClick={onClickCompose}>
                 <span class="material-symbols-outlined">

@@ -17,7 +17,6 @@ export function NoteList({ setNotes, setIsPinned, setDelete, notes }) {
     }, [isColorChanged])
 
     useEffect(() => {
-        console.log(isDuplicate)
         noteService.query(notes).then(setNotes)
         setDuplication(false)
     }, [isDuplicate])
@@ -75,9 +74,10 @@ export function NoteList({ setNotes, setIsPinned, setDelete, notes }) {
                             </button>
                             <button title="update" onClick={onOpenUpdateModal}>
 
-                                <i className="material-icons-outlined">
-                                    upgrade
-                                </i></button>
+                                <i class="material-symbols-outlined">
+                                    edit_note
+                                </i>
+                            </button>
                             <button onClick={() => onPinNote(note.id)}>
                                 <i className="material-icons-outlined">push_pin</i></button>
                             <button onClick={() => onToggleColorDisplay(idx)} className="note-bgc">
@@ -85,7 +85,6 @@ export function NoteList({ setNotes, setIsPinned, setDelete, notes }) {
                                     palette
                                 </i>
                             </button>
-
                             <button onClick={() => onDuplicateNote(note)}><i className="material-icons-outlined">
                                 content_copy
                             </i></button>

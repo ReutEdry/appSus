@@ -1,0 +1,68 @@
+.add-note-form {
+    display: flex;
+    height: fit-content;
+    width: 600px;
+    margin: 32px auto 16px 0;
+    position: relative;
+    border-radius: 8px;
+    box-shadow: inset 1px 1px 1px #dadce0, inset -1px 0 0 #dadce0, 0 1px 1px 0 rgba(60, 64, 67, .3), 0 1px 1px 1px rgba(60, 64, 67, .15);
+    border-color: #e0e0e0;
+    padding: 12px 16px 12px 16px;
+    display: flex;
+    flex-direction: column;
+}
+
+.add-note-form>* {
+    border: none;
+    resize: none;
+    width: 493px;
+    outline: none;
+    overflow: auto;
+    background: none;
+    padding: 12px 16px 12px 16px;
+}
+
+.title-input {
+    height: fit-content;
+    font-size: 1rem;
+}
+
+.txt-input {
+    height: 80px;
+    font-size: 0.875rem;
+}
+
+.title-input:focus-visible {
+    outline: none;
+}
+
+
+.txt-input:focus-visible {
+    outline: none;
+}
+
+.add-note-features {
+    display: flex;
+    justify-content: space-between;
+    margin: 0 10px
+}
+
+.add-note-features button {
+    background: none;
+    color: inherit;
+    border: none;
+    padding: 0;
+    font: inherit;
+    cursor: pointer;
+    outline: inherit;
+    /* font-size: ; */
+}
+
+.add-note-features button:hover {
+    background-color: rgba(95, 99, 104, 0.157);
+    cursor: pointer;
+}
+
+.add-note-features i {
+    font-size: 1.3em;
+}

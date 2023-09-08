@@ -30,6 +30,8 @@
 @import './apps/note/cmps/NoteList.css';
 @import './apps/note/cmps/ColorSet.css';
 @import './apps/mail/cmps/MailCompose.css';
-
+@import './apps/note/cmps/addNote.css';
+@import './apps/note/cmps/noteHeader.css';
+@import './apps/note/cmps/noteNav.css'
 
 /* @import './apps/mail/cmps/MailList.css'; */
