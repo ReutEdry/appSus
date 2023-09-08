@@ -22,3 +22,17 @@
     display: grid;
 }
 
+.starred i {
+    color: #f3d529;
+}
+
+.active{
+    height: 32px;
+    background-color: #d3e3fd;
+    min-width: 40px;
+    max-width: 240px;
+    border-top-right-radius: 555px;
+    border-bottom-right-radius: 555px;
+}
+
+

@@ -30,6 +30,7 @@ export function SearchFilter({filterBy, onSetFilterBy}){
             <span class="material-symbols-outlined">
                 search
             </span>
+            <img className="small-img" src="../../assets/img/saharImg.jpeg" alt="" />
         </section>
     )
 }
