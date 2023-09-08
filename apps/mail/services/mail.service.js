@@ -3,8 +3,9 @@ import { storageService} from '../../../services/storage.service.js'
 import { asyncStorageService} from '../../../services/async-storage.service.js'
 import { utilService } from '../../../services/util.service.js'
 const STORAGE_KEY = 'emailsDB'
-_createMails()
 const DELETED_MAILS_KEY = 'deletedMailsDB'
+const SENT_MAILS_KEY = 'sentMailsDB'
+_createMails()
 
 export const mailService = {
     query,
@@ -18,7 +19,9 @@ export const mailService = {
     saveDeletedMail,
     getDeletedMails,
     markAsStar,
-    getStarredMails
+    getStarredMails,
+    sentMailFormat,
+    getSentMails
 }
 
 const loggedinUser = {
@@ -49,28 +52,35 @@ function _createMails(){
     let mails = storageService.loadFromStorage(STORAGE_KEY)
     if (!mails || !mails.length) {
         mails = []
-        mails.push(_createMail('Dropbox', utilService.makeLorem(utilService.getRandomIntInclusive(3,7)),utilService.makeLorem(20), utilService.formatDate(Date.now())))
-        mails.push(_createMail('Google', utilService.makeLorem(utilService.getRandomIntInclusive(3,7)),utilService.makeLorem(20), utilService.formatDate(Date.now())))
-        mails.push(_createMail('Amazon', utilService.makeLorem(utilService.getRandomIntInclusive(3,7)),utilService.makeLorem(100), utilService.formatDate(Date.now())))
-        mails.push(_createMail('Dropbox',utilService.makeLorem(utilService.getRandomIntInclusive(3,7)), utilService.makeLorem(50), utilService.formatDate(Date.now())))
-        mails.push(_createMail('YouTube', utilService.makeLorem(utilService.getRandomIntInclusive(3,7)),utilService.makeLorem(20), utilService.formatDate(Date.now())))
-        mails.push(_createMail('Facebook', utilService.makeLorem(utilService.getRandomIntInclusive(3,7)),utilService.makeLorem(60), utilService.formatDate(Date.now())))
-        mails.push(_createMail('Amazon', utilService.makeLorem(utilService.getRandomIntInclusive(3,7)),utilService.makeLorem(20), utilService.formatDate(Date.now())))
-        mails.push(_createMail('Apple', utilService.makeLorem(utilService.getRandomIntInclusive(3,7)),utilService.makeLorem(20), utilService.formatDate(Date.now())))
-        mails.push(_createMail('Facebook', utilService.makeLorem(utilService.getRandomIntInclusive(3,7)),utilService.makeLorem(20), utilService.formatDate(Date.now())))
-        mails.push(_createMail('Amazon', utilService.makeLorem(utilService.getRandomIntInclusive(3,7)),utilService.makeLorem(20), utilService.formatDate(Date.now())))
-        mails.push(_createMail('YouTube', utilService.makeLorem(utilService.getRandomIntInclusive(3,7)), utilService.makeLorem(20), utilService.formatDate(Date.now())))
-        mails.push(_createMail('Facebook', utilService.makeLorem(utilService.getRandomIntInclusive(3,7)),utilService.makeLorem(60), utilService.formatDate(Date.now())))
-        mails.push(_createMail('Amazon', utilService.makeLorem(utilService.getRandomIntInclusive(3,7)),utilService.makeLorem(20), utilService.formatDate(Date.now())))
-        mails.push(_createMail('Apple', utilService.makeLorem(utilService.getRandomIntInclusive(3,7)),utilService.makeLorem(20), utilService.formatDate(Date.now())))
-        mails.push(_createMail('Facebook', utilService.makeLorem(utilService.getRandomIntInclusive(3,7)),utilService.makeLorem(20), utilService.formatDate(Date.now())))
-        mails.push(_createMail('Amazon', utilService.makeLorem(utilService.getRandomIntInclusive(3,7)),utilService.makeLorem(20), utilService.formatDate(Date.now())))
-        mails.push(_createMail('YouTube', utilService.makeLorem(utilService.getRandomIntInclusive(3,7)),utilService.makeLorem(20), utilService.formatDate(Date.now())))
-        mails.push(_createMail('Facebook', utilService.makeLorem(utilService.getRandomIntInclusive(3,7)),utilService.makeLorem(60), utilService.formatDate(Date.now())))
-        mails.push(_createMail('Amazon', utilService.makeLorem(utilService.getRandomIntInclusive(3,7)),utilService.makeLorem(20), utilService.formatDate(Date.now())))
-        mails.push(_createMail('Apple', utilService.makeLorem(utilService.getRandomIntInclusive(3,7)),utilService.makeLorem(20), utilService.formatDate(Date.now())))
-        mails.push(_createMail('Facebook', utilService.makeLorem(utilService.getRandomIntInclusive(3,7)),utilService.makeLorem(20), utilService.formatDate(Date.now())))
-        mails.push(_createMail('Amazon', utilService.makeLorem(utilService.getRandomIntInclusive(3,7)),utilService.makeLorem(20), utilService.formatDate(Date.now())))
+        mails.push(_createMail('Dropbox'))
+        mails.push(_createMail('Google'))
+        mails.push(_createMail('Amazon'))
+        mails.push(_createMail('Interactive Brokers'))
+        mails.push(_createMail('Github'))
+        mails.push(_createMail('Facebook'))
+        mails.push(_createMail('The-Open-University'))
+        mails.push(_createMail('Apple'))
+        mails.push(_createMail('Facebook'))
+        mails.push(_createMail('Interactive Brokers'))
+        mails.push(_createMail('YouTube'))
+        mails.push(_createMail('Facebook'))
+        mails.push(_createMail('The-Open-University'))
+        mails.push(_createMail('Apple'))
+        mails.push(_createMail('Facebook'))
+        mails.push(_createMail('Amazon'))
+        mails.push(_createMail('YouTube'))
+        mails.push(_createMail('Facebook'))
+        mails.push(_createMail('Amazon'))
+        mails.push(_createMail('Apple'))
+        mails.push(_createMail('Facebook'))
+        mails.push(_createMail('Github'))
+        mails.push(_createMail('The-Open-University'))
+        mails.push(_createMail('The-Open-University'))
+        mails.push(_createMail('Apple'))
+        mails.push(_createMail('Facebook'))
+        mails.push(_createMail('Amazon'))
+        mails.push(_createMail('YouTube'))
+        mails.push(_createMail('Facebook'))
         storageService.saveToStorage(STORAGE_KEY, mails)
     }
 }
@@ -115,11 +125,11 @@ function getDefaultFilter() {
 function _createMail(from ,subject, body, sentAt) {
     return {
         id: utilService.makeId(),
-        subject,
-        body,
+        subject:utilService.makeLorem(utilService.getRandomIntInclusive(3,7)),
+        body: utilService.makeLorem(utilService.getRandomIntInclusive(20,80)),
         isRead: (Math.random() > 0.4),
         isStar: (Math.random() > 0.8),
-        sentAt,
+        sentAt:utilService.formatDate(Date.now()),
         removedAt: null,
         from,
         to: 'user@appsus.com'
@@ -155,4 +165,28 @@ function getStarredMails(){
     const starredMails = mails.filter(mail => mail.isStar)
     console.log('starredMails:', starredMails)
     return starredMails
+}
+
+// function sendMail(newMail){
+//     console.log('newMail:', newMail)
+//     // return asyncStorageService.save(SENT_MAILS_KEY, newMail)
+// }
+
+function sentMailFormat({subject,body,to}){
+    const formattedSentMail = {
+        subject,
+        body,
+        isRead: false,
+        sentAt: null,
+        removedAt: null,
+        from: 'sahar@appsus.com',
+        to
+    }   
+    return asyncStorageService.post(SENT_MAILS_KEY, formattedSentMail)       
+}
+
+function getSentMails(){
+    const mails = storageService.loadFromStorage(SENT_MAILS_KEY)
+    console.log('mails:', mails)
+    return mails
 }

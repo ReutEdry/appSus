@@ -25,19 +25,22 @@ export function MailSorting({toggleToolBar, setMails}){
                 mails = mailService.getStarredMails()
                 setMails(mails)
                 onSetActive(val)
+                break;
+            case 'sent':
+                mails = mailService.getSentMails()
+                setMails(mails)
+                onSetActive(val)
             default:
                 break;
         }
     }
-   
+    
     function onClickCompose(){
         isComposeOpen(!setCompose)
-        console.log('here');
-       
+        console.log('here'); 
     }
 
-    return (
-        
+    return ( 
         <section className='sorting-container'>
             {setCompose && <MailCompose isComposeOpen={isComposeOpen}/>}
             <ul className="sorting-list">
@@ -46,8 +49,7 @@ export function MailSorting({toggleToolBar, setMails}){
                     edit
                 </span>
                 {!toggleToolBar && "Compose" }
-            </li>
-                
+            </li>         
             <li className={setActive === 'inbox' ? 'active' : ''} onClick={() => onSetMails('inbox')}>
                 <span class="material-symbols-outlined">
                     inbox
@@ -60,7 +62,7 @@ export function MailSorting({toggleToolBar, setMails}){
                 </span>
                 {!toggleToolBar && "Starred"}
             </li>
-            <li>
+            <li className={setActive === 'sent' ? 'active' : ''} onClick={() => onSetMails('sent')}>
             <span class="material-symbols-outlined">
                 send
             </span>  
