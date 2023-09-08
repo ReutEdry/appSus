@@ -17,7 +17,6 @@
      width: 238px;
      border-radius: 5px;
      border: 1px solid lightslategrey;
-     margin: 16px;
  }
 
  .noteChild {
@@ -25,11 +24,13 @@
      justify-content: space-between;
      display: flex;
      flex-direction: column;
-     padding: 10px;
+     padding: 2.5px;
  }
 
  .imgNote {
      width: 100%;
+     height: 100%;
+     border-radius: 5px;
  }
 
 
@@ -47,8 +48,27 @@
      font: inherit;
      cursor: pointer;
      outline: inherit;
+
  }
 
  .note-bgc {
      position: relative;
+ }
+
+ .edit-note-area {
+     opacity: 0;
+ }
+
+ .noteChild:hover .edit-note-area {
+     opacity: 1;
+     transition: 1s;
+     background-color: rgba(255, 255, 255, 0.563);
+     border-radius: 5px;
+     /* padding: 5px; */
+ }
+
+ .noteChild:hover img .edit-note-area {
+     /* opacity: 1; */
+     /* transition: 1s; */
+     background-color: rgba(255, 255, 255, 0.563);
  }

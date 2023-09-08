@@ -1,5 +1,7 @@
 import { AddNote } from "../cmps/AddNote.jsx"
 import { NoteList } from "../cmps/NoteList.jsx"
+import { NoteNav } from "../cmps/NoteNav.jsx"
+import { SearchNoteFilter } from "../cmps/SearchNoteFilter.jsx"
 import { noteService } from "../services/noteService.service.js"
 
 const { useState, useEffect } = React
@@ -37,9 +39,16 @@ export function NoteIndex() {
     if (!unPinneds) return <div className="loading unPinned notes">loading unPinned notes</div>
     return (
         <section className="main-note-layout">
-            // demo of sorting:
+            <NoteNav />
+            <header className="main-note-header">
+                <article className="note-logo">
+                    <img className="logo-note-img" src="https://logowik.com/content/uploads/images/google-keep3316.jpg" alt="" />
+                    <span>Keep</span>
+                </article>
+                <SearchNoteFilter />
+            </header>
             <section className="notesList">
-                <section className="add-note-are">
+                <section className="add-note-area">
                     <AddNote setNotes={setNotes} notes={notes} />
                 </section>
                 <NoteList setNotes={setNotes} setIsPinned={setIsPinned} setDelete={setDelete} notes={pinneds} />

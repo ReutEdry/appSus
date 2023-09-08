@@ -1,29 +1,14 @@
- /* note index */
  * {
      box-sizing: border-box;
  }
 
  .main-note-layout {
-     position: relative;
      background: #f2f6fc;
      display: grid;
+     grid-template-rows: 62px 1fr;
+     grid-template-columns: 250px 1fr;
      margin: 0 auto;
      padding: 5px;
      font-family: 'Roboto', RobotoDraft, Helvetica, Arial, sans-serif;
-     grid-template-columns: 280px 1fr;
      height: 100vh;
- }
-
- .add-note-form {
-     display: flex;
-     flex-direction: column;
- }
-
- .add-note-form>* {
-     border: none;
-     resize: none;
-     width: 493px;
-     outline: none;
-     overflow: auto;
-
  }
