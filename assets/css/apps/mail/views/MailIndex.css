@@ -19,5 +19,5 @@
 }
 
 .main-layout.close {
-    grid-template-columns: 200px 1fr;
+    grid-template-columns: 250px 1fr;
 }

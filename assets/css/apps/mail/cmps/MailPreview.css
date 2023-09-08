@@ -24,7 +24,9 @@
 
 .email-item.read {
     background-color: #f2f6fc;
-    opacity: 0.6;
+    /* opacity: 0.6; */
+    color:#b9baba;
+    /* z-index: 1; */
 }
 
 .email-subject {
