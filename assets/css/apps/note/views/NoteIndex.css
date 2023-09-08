@@ -21,7 +21,7 @@
 
  .add-note-form>* {
      border: none;
-     resize: initial;
+     resize: none;
      width: 493px;
      outline: none;
      overflow: auto;

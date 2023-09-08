@@ -52,12 +52,3 @@
  .note-bgc {
      position: relative;
  }
-
- .note-bgc-input {
-     opacity: 0;
- }
-
- .note-palette {
-     position: absolute;
-     left: 0;
- }

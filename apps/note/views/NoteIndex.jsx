@@ -9,15 +9,15 @@ export function NoteIndex() {
     const [pinneds, setPinned] = useState([])
     const [unPinneds, setUnPinned] = useState([])
     const [isPinned, setIsPinned] = useState(null)
-    const [isAddedNewNote, setIsAddedNewNote] = useState(null)
     const [deleteNote, setDelete] = useState(null)
+
 
     useEffect(() => {
         noteService.query()
             .then(res => {
                 setNotes(res)
             })
-    }, [deleteNote, isPinned, isAddedNewNote])
+    }, [deleteNote, isPinned])
 
     useEffect(() => {
         const pinnedNotes = notes.filter(note => {
@@ -42,8 +42,8 @@ export function NoteIndex() {
                 <section className="add-note-are">
                     <AddNote setNotes={setNotes} notes={notes} />
                 </section>
-                <NoteList setIsAddedNewNote={setIsAddedNewNote} setDelete={setDelete} notes={pinneds} />
-                <NoteList setIsPinned={setIsPinned} setDelete={setDelete} notes={unPinneds} />
+                <NoteList setNotes={setNotes} setIsPinned={setIsPinned} setDelete={setDelete} notes={pinneds} />
+                <NoteList setNotes={setNotes} setIsPinned={setIsPinned} setDelete={setDelete} notes={unPinneds} />
             </section>
         </section>
     )

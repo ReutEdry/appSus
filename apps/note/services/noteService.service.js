@@ -11,7 +11,8 @@ export const noteService = {
     deleteNote,
     settingIsPin,
     getNewNote,
-    save
+    save,
+    saveColorChange
 }
 
 function query() {
@@ -44,12 +45,17 @@ function removeTodo(todoId, noteId) {
         })
 }
 
+function saveColorChange(note) {
+    return asyncStorageService.put(NOTES_KEY, note)
+}
+
 function save(note) {
-    // if (note.id) {
-    //     return storageService.put(BOOK_KEY, note)
-    // } else {
-    return asyncStorageService.post(NOTES_KEY, note)
-    // }
+    if (note.id) {
+        note.id = ''
+        return asyncStorageService.post(NOTES_KEY, note)
+    } else {
+        return asyncStorageService.post(NOTES_KEY, note)
+    }
 }
 
 function _createNotes() {
@@ -69,7 +75,7 @@ function getDemoData() {
             type: 'NoteTxt',
             isPinned: true,
             style: {
-                backgroundColor: '#00d'
+                backgroundColor: '#ffffff'
             },
             info: {
                 txt: 'Fullstack Me Baby!'
@@ -84,7 +90,7 @@ function getDemoData() {
                 title: 'Bobi and Me'
             },
             style: {
-                backgroundColor: '#00d'
+                backgroundColor: '#ffffff'
             }
         },
         {
@@ -97,7 +103,10 @@ function getDemoData() {
                     { id: utilService.makeId(), txt: 'Driving license', doneAt: null },
                     { id: utilService.makeId(), txt: 'Coding power', doneAt: 187111111 }
                 ]
-            }
+            },
+            style: {
+                backgroundColor: '#ffffff'
+            },
         }
     ]
 
@@ -113,7 +122,7 @@ function getNewNote() {
 
         },
         style: {
-            backgroundColor: '#00d'
+            backgroundColor: '#ffffff'
         }
     }
 }
