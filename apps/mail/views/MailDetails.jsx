@@ -22,7 +22,7 @@ export function MailDetail() {
         <div className="mail-detail-container">
             <header className="mail-detail-header">
                 <h2>{mail.subject}</h2>
-                <button><Link to={`/note/${mail.subject}/${mail.body}`}>Note</Link></button>
+                <button className="clean-btn"><Link to={`/note/${mail.subject}/${mail.body}`}><i className="fa-brands fa-telegram"></i></Link></button>
                 <button onClick={onBack} className="back-btn">Back</button>
             </header>
             <div className="mail-detail-content">
