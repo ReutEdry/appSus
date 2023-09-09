@@ -21,6 +21,9 @@ export function NoteIndex() {
             })
     }, [deleteNote, isPinned])
 
+
+
+
     useEffect(() => {
         const pinnedNotes = notes.filter(note => {
             return note.isPinned

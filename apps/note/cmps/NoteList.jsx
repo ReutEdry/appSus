@@ -25,8 +25,8 @@ export function NoteList({ setNotes, setIsPinned, setDelete, notes }) {
         setDelete(notesToEdit)
     }, [notesToEdit])
 
-    function onDeleteNote(noteId) {
-        noteService.deleteNote(noteId)
+    function onRemoveNote(noteId) {
+        noteService.removeNote(noteId)
             .then(() => {
                 setNotesToEdit(prevNote =>
                     prevNote.filter(note => note.id !== noteId))
@@ -69,7 +69,7 @@ export function NoteList({ setNotes, setIsPinned, setDelete, notes }) {
                     <section className="noteChild">
                         <DynamicNote id={note.id} type={note.type} info={note.info} />
                         <section className="edit-note-area">
-                            <button onClick={() => onDeleteNote(note.id)}>
+                            <button onClick={() => onRemoveNote(note.id)}>
                                 <i className="material-icons-outlined">delete</i>
                             </button>
                             <button title="update" onClick={onOpenUpdateModal}>
