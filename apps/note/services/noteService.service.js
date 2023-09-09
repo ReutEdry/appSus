@@ -13,7 +13,8 @@ export const noteService = {
     settingIsPin,
     getNewNote,
     save,
-    saveColorChange
+    saveColorChange,
+    makeNewNoteFromEmail
 }
 
 function query() {
@@ -126,5 +127,11 @@ function getNewNote() {
             backgroundColor: '#ffffff'
         }
     }
+}
+
+function makeNewNoteFromEmail(noteFromEmail) {
+    const newNote = getNewNote()
+    newNote.info = { title: noteFromEmail.mailTitle, txt: noteFromEmail.mailBody }
+    return asyncStorageService.post(NOTES_KEY, newNote)
 }
 

@@ -3,6 +3,8 @@ import { ColorSet } from './ColorSet.jsx'
 import { DynamicNote } from "./DynamicNote.jsx"
 import { NoteEdit } from './NoteEdit.jsx'
 const { useState, useEffect } = React
+const { Link } = ReactRouterDOM
+
 
 export function NoteList({ setNotes, setIsPinned, setDelete, notes }) {
     const [notesToEdit, setNotesToEdit] = useState(notes)
@@ -61,7 +63,6 @@ export function NoteList({ setNotes, setIsPinned, setDelete, notes }) {
         setModalEditing(!isModaEditlOpen)
     }
 
-
     return (
         <section className="note-container">
             {
@@ -91,7 +92,7 @@ export function NoteList({ setNotes, setIsPinned, setDelete, notes }) {
 
                             <button><i className="material-icons-outlined">
                                 forward_to_inbox
-                            </i></button>
+                            </i><Link to={`/mail/${note.info}`}></Link></button>
                         </section>
                     </section>
                     {isModaEditlOpen && <NoteEdit />}

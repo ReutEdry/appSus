@@ -5,6 +5,8 @@ import { SearchNoteFilter } from "../cmps/SearchNoteFilter.jsx"
 import { noteService } from "../services/noteService.service.js"
 
 const { useState, useEffect } = React
+const { useParams } = ReactRouterDOM
+
 
 export function NoteIndex() {
     const [notes, setNotes] = useState([])
@@ -12,17 +14,16 @@ export function NoteIndex() {
     const [unPinneds, setUnPinned] = useState([])
     const [isPinned, setIsPinned] = useState(null)
     const [deleteNote, setDelete] = useState(null)
-
+    const [isEmailNoteAdded, setEmailNoteAdded] = useState(false)
+    const params = useParams()
+    let isParamsNotFull = JSON.stringify(params) === JSON.stringify({})
 
     useEffect(() => {
         noteService.query()
             .then(res => {
                 setNotes(res)
             })
-    }, [deleteNote, isPinned])
-
-
-
+    }, [deleteNote, isPinned, isEmailNoteAdded])
 
     useEffect(() => {
         const pinnedNotes = notes.filter(note => {
@@ -37,6 +38,17 @@ export function NoteIndex() {
         })
         setUnPinned(UnpinnedNotes)
     }, [notes])
+
+    useEffect(() => {
+        if (params.mailTitle && params.mailBody) {
+            noteService.makeNewNoteFromEmail(params)
+                .then(res => {
+                    const updatedNotes = [...notes, res]
+                    setNotes(updatedNotes)
+                    setEmailNoteAdded(true)
+                })
+        }
+    }, [isParamsNotFull])
 
     if (!pinneds) return <div className="loading Pinned notes">loading Pinned notes</div>
     if (!unPinneds) return <div className="loading unPinned notes">loading unPinned notes</div>
