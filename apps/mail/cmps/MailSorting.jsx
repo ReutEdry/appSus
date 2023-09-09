@@ -1,14 +1,24 @@
 const { useState, useEffect } = React
 import { mailService } from "../services/mail.service.js"
 import { MailCompose } from "./MailCompose.jsx"
-
+const {useParams} = ReactRouterDOM
 
 export function MailSorting({ toggleToolBar, setMails }) {
     const [setActive, onSetActive] = useState('inbox')
-    const [setCompose, isComposeOpen] = useState(false)
+
     const [mailCount, setMailCounts] = useState(0)
-        
-      
+    const params = useParams()
+    let isParamsNotFull = JSON.stringify(params) === JSON.stringify({}) 
+    const isInitialComposeOpen = !isParamsNotFull;
+    const [setCompose, isComposeOpen] = useState(isInitialComposeOpen);
+    useEffect(() => {
+        if (!isParamsNotFull) {
+            isComposeOpen(true);
+        }
+    }, [params]);
+    
+    
+    console.log(params);
 
         useEffect(() => {
             setMailCounts(mailService.getMailsCount);
@@ -47,7 +57,7 @@ export function MailSorting({ toggleToolBar, setMails }) {
     }
     return ( 
         <section className='sorting-container'>
-            {setCompose && <MailCompose isComposeOpen={isComposeOpen} />}
+            {setCompose && <MailCompose paramsInfo={params} isComposeOpen={isComposeOpen} />}
             <ul className="sorting-list">
             <li className="compose" onClick={onClickCompose}>
                 <span className="material-symbols-outlined">

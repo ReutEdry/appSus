@@ -41,8 +41,8 @@ function query(filterBy)  {
                 const regExp = new RegExp(filterBy.search, 'i')
                 mails = mails.filter(mail => regExp.test(mail.from))
             }
-            return mails
-         })
+        return mails
+    })
 }
 
 function getDefaultFilter() {
@@ -54,34 +54,25 @@ function _createMails(){
     if (!mails || !mails.length) {
         mails = []
         mails.push(_createMail('Dropbox'))
-        mails.push(_createMail('Google'))
-        mails.push(_createMail('Amazon'))
+        mails.push(_createMail('Google Security'))
+        mails.push(_createMail('Paypal'))
         mails.push(_createMail('Interactive Brokers'))
-        mails.push(_createMail('Github'))
+        mails.push(_createMail('GitHub'))
         mails.push(_createMail('Facebook'))
         mails.push(_createMail('The-Open-University'))
         mails.push(_createMail('Apple'))
-        mails.push(_createMail('Facebook'))
-        mails.push(_createMail('Interactive Brokers'))
+        mails.push(_createMail('Udemy'))
+        mails.push(_createMail('LinkedIn'))
         mails.push(_createMail('YouTube'))
         mails.push(_createMail('Facebook'))
         mails.push(_createMail('The-Open-University'))
         mails.push(_createMail('Apple'))
         mails.push(_createMail('Facebook'))
         mails.push(_createMail('Amazon'))
-        mails.push(_createMail('YouTube'))
+        mails.push(_createMail('LinkedIn'))
         mails.push(_createMail('Facebook'))
-        mails.push(_createMail('Amazon'))
-        mails.push(_createMail('Apple'))
-        mails.push(_createMail('Facebook'))
-        mails.push(_createMail('Github'))
-        mails.push(_createMail('The-Open-University'))
-        mails.push(_createMail('The-Open-University'))
-        mails.push(_createMail('Apple'))
-        mails.push(_createMail('Facebook'))
-        mails.push(_createMail('Amazon'))
-        mails.push(_createMail('YouTube'))
-        mails.push(_createMail('Facebook'))
+        mails.push(_createMail('Udemy'))
+        mails.push(_createMail('GitHub'))
         storageService.saveToStorage(STORAGE_KEY, mails)
     }
 }

@@ -36,7 +36,7 @@ export function MailList({mails, onRemoveMail, onStarSelect}) {
         console.log('hey')
         setSortedMail(target.value)  
     }
-
+    
     function handleMailClick(ev,mailId, val) {
         ev.stopPropagation();
         toggleMailReadStatus(mailId);
@@ -89,7 +89,10 @@ export function MailList({mails, onRemoveMail, onStarSelect}) {
                                 archive
                             </span>
                         </button>
-                        <button className="prev-btn delete-btn clean-btn" onClick={()=> {onRemoveMail(mail.id)}}>
+                        <button className="prev-btn delete-btn clean-btn" onClick={(event)=> {
+                            event.stopPropagation()
+                            onRemoveMail(mail.id)
+                            }}>
                             <span className="material-symbols-outlined">
                                 delete
                             </span>
