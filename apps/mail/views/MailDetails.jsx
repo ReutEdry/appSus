@@ -13,19 +13,26 @@ export function MailDetail() {
             .then(mail => setMail(mail))
     })
 
-
     function onBack(){
         navigate('/mail')
     }
-    if (!mail) return <div>Loading...</div>;
+    if (!mail) return <div>Loading...</div>
 
     return (
-        <li>
-            <h2>{mail.subject}</h2>
-            <p>From: {mail.from}</p>
-            <p>To: {mail.to}</p>
-            <div>{mail.body}</div>
-            <button onClick={onBack}>Back</button>
-        </li>
+        <div className="mail-detail-container">
+            <header className="mail-detail-header">
+                <h2>{mail.subject}</h2>
+                <button><Link to={`/note/${mail.subject}/${mail.body}`}>Note</Link></button>
+                <button onClick={onBack} className="back-btn">Back</button>
+            </header>
+            <div className="mail-detail-content">
+                <div className="mail-meta">
+                    <p><strong>From:</strong> {mail.from}</p>
+                    <p><strong>To:</strong> {mail.to}</p>
+                </div>
+                <div className="mail-body">{mail.body}</div>
+            </div>
+        </div>
     );
+    
 }
