@@ -1,23 +1,41 @@
-
-
 .app-header {
     display: flex;
-    justify-content: space-between;
-    padding: 20px 0;
-    background: lightcyan;
-    border-bottom: 2px solid white;
+    /* justify-content: space-between; */
+    align-items: center;
+    padding: 1rem 5%;
+    background-color: #F5F5F5; 
+    box-shadow: 0px 1px 10px rgba(0, 0, 0, 0.5);
+    top: 0;
+    z-index: 100;
+}
+
+.app-header h3 {
+    color: #4285F4; 
+    margin: 0;
+    cursor: pointer;
+}
+
+nav {
+    position: absolute;
+    display: flex;
+    gap: 20px;
+    right: 40px;
 }
 
 nav a {
-    margin: .5em;
+    color: #666;
+    text-decoration: none;
+    padding: 8px 16px;
+    border-radius: 15px;
+    transition: background-color 0.3s ease, color 0.3s ease;
 }
 
-nav a:active {
-    color: purple;
+nav a:hover {
+    background-color: #ECECEC; 
+    color: #4285F4; 
 }
 
-nav a.active {
-    color: darkblue;
-    font-weight: bold;
-    text-decoration: overline;
+nav a.active { 
+    background-color: #4285F4; 
+    color: #FFFFFF;
 }

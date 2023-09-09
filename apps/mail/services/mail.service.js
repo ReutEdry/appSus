@@ -21,7 +21,8 @@ export const mailService = {
     markAsStar,
     getStarredMails,
     sentMailFormat,
-    getSentMails
+    getSentMails,
+    getMailsCount
 }
 
 const loggedinUser = {
@@ -125,14 +126,14 @@ function getDefaultFilter() {
 function _createMail(from ,subject, body, sentAt) {
     return {
         id: utilService.makeId(),
-        subject:utilService.makeLorem(utilService.getRandomIntInclusive(3,7)),
+        subject:utilService.makeLorem(utilService.getRandomIntInclusive(5,10)) + '-',
         body: utilService.makeLorem(utilService.getRandomIntInclusive(20,80)),
         isRead: (Math.random() > 0.4),
         isStar: (Math.random() > 0.8),
         sentAt:utilService.formatDate(Date.now()),
         removedAt: null,
         from,
-        to: 'user@appsus.com'
+        to: 'SaharMachpud@appsus.com'
     }
 }
 
@@ -167,11 +168,6 @@ function getStarredMails(){
     return starredMails
 }
 
-// function sendMail(newMail){
-//     console.log('newMail:', newMail)
-//     // return asyncStorageService.save(SENT_MAILS_KEY, newMail)
-// }
-
 function sentMailFormat({subject,body,to}){
     const formattedSentMail = {
         subject,
@@ -179,14 +175,16 @@ function sentMailFormat({subject,body,to}){
         isRead: false,
         sentAt: null,
         removedAt: null,
-        from: 'sahar@appsus.com',
+        from: 'SaharMachpud@appsus.com',
         to
     }   
     return asyncStorageService.post(SENT_MAILS_KEY, formattedSentMail)       
 }
 
 function getSentMails(){
-    const mails = storageService.loadFromStorage(SENT_MAILS_KEY)
-    console.log('mails:', mails)
-    return mails
+    return storageService.loadFromStorage(SENT_MAILS_KEY)
+}
+
+function getMailsCount(){  
+    return storageService.loadFromStorage(STORAGE_KEY).length
 }

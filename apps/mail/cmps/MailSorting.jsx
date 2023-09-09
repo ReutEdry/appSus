@@ -4,30 +4,36 @@ import { MailCompose } from "./MailCompose.jsx"
 
 
 export function MailSorting({ toggleToolBar, setMails }) {
-    const [setActive, onSetActive] = useState(null)
+    const [setActive, onSetActive] = useState('inbox')
     const [setCompose, isComposeOpen] = useState(false)
+    const [mailCount, setMailCounts] = useState(0)
+        
+      
 
+        useEffect(() => {
+            setMailCounts(mailService.getMailsCount);
+        }, []);
 
     function onSetMails(val) {
         let mails
         switch (val) {
-            case 'deleted':
+            case 'deleted':  
                 mails = mailService.getDeletedMails()
                 setMails(mails)
                 onSetActive(val)
                 break;
             case 'inbox':
                 mails = mailService.query()
-                    .then(mails => setMails(mails));
+                    .then(mails => setMails(mails))
                 onSetActive(val)
                 break;
             case 'starred':
-                mails = mailService.getStarredMails()
+                mails = mailService.getStarredMails() 
                 setMails(mails)
                 onSetActive(val)
                 break;
             case 'sent':
-                mails = mailService.getSentMails()
+                mails = mailService.getSentMails()     
                 setMails(mails)
                 onSetActive(val)
             default:
@@ -39,40 +45,40 @@ export function MailSorting({ toggleToolBar, setMails }) {
         isComposeOpen(!setCompose)
         console.log('here'); 
     }
-
     return ( 
         <section className='sorting-container'>
             {setCompose && <MailCompose isComposeOpen={isComposeOpen} />}
             <ul className="sorting-list">
             <li className="compose" onClick={onClickCompose}>
-                <span class="material-symbols-outlined">
+                <span className="material-symbols-outlined">
                     edit
                 </span>
-                {!toggleToolBar && "Compose" }
-            </li>         
+                {!toggleToolBar && <span className="compose-txt">Compose</span> }
+            </li>       
             <li className={setActive === 'inbox' ? 'active' : ''} onClick={() => onSetMails('inbox')}>
-                <span class="material-symbols-outlined">
+                <span className="material-symbols-outlined">
                     inbox
                 </span>
-                {!toggleToolBar && "Inbox"}
+                {!toggleToolBar && 'Inbox'}
+                {!toggleToolBar && <span className="mail-count">{mailCount}</span>}
             </li>
             <li className={setActive === 'starred' ? 'active' : ''} onClick={() => onSetMails('starred')}>
-                <span class="material-symbols-outlined">
+                <span className="material-symbols-outlined">
                     star
                 </span>
-                {!toggleToolBar && "Starred"}
+                {!toggleToolBar && 'Starred'}
             </li>
             <li className={setActive === 'sent' ? 'active' : ''} onClick={() => onSetMails('sent')}>
-            <span class="material-symbols-outlined">
-                send
-            </span>  
-                {!toggleToolBar && "Sent"}
+                <span className="material-symbols-outlined">
+                    send
+                </span>  
+                {!toggleToolBar && 'Sent'}    
             </li>
             <li className={setActive === 'deleted' ? 'active' : ''} onClick={() => onSetMails('deleted')}>
-            <span class="material-symbols-outlined">
-                delete
-            </span>
-                {!toggleToolBar && "Trash"}
+                <span className="material-symbols-outlined">
+                    delete
+                </span>
+                {!toggleToolBar && `Trash`}
             </li>
             </ul>
         </section>

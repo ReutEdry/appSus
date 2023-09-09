@@ -7,7 +7,7 @@
      background: #f2f6fc;
      display: grid;
      margin: 0 auto;
-     padding: 5px;
+     /* padding: 5px; */
      font-family: 'Roboto', RobotoDraft, Helvetica, Arial, sans-serif;
      grid-template-rows: 62px 1fr;
      height: 100vh;

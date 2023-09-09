@@ -3,8 +3,7 @@ import { mailService } from '../services/mail.service.js';
 import { MailList } from '../cmps/MailList.jsx';
 import { SearchFilter } from '../cmps/SearchFilter.jsx';
 import { MailSorting } from '../cmps/MailSorting.jsx';
-import { UserMsg } from '../../../cmps/UserMsg.jsx';
-
+import { showSuccessMsg } from "../services/event-bus.service.js";
 
 export function MailIndex() {
     const [mails, setMails] = useState([])
@@ -18,8 +17,15 @@ export function MailIndex() {
     }, [filterBy])
 
     function onStarSelect(mailId){
-        mailService.markAsStar(mailId);
-        
+        mailService.markAsStar(mailId)
+        setMails(prevMails => {
+            return prevMails.map(mail => {
+                if (mail.id === mailId) {
+                    return { ...mail, isStar: !mail.isStar }
+                }
+                return mail;
+            })
+        })
     }
     
     function onRemoveMail(mailId){
@@ -28,7 +34,7 @@ export function MailIndex() {
         mailService.remove(mailId)
             .then(() => {setMails(prevMail => 
                 prevMail.filter(mail => mail.id !== mailId))
-                UserMsg.showSuccessMsg(`Book removed ${mailId}`)
+                showSuccessMsg(`Mail removed`)
             })
             .catch(err=> console.log('err', err))     
     }
@@ -41,15 +47,13 @@ export function MailIndex() {
         setToggle(!toggleToolBar)
     }
 
-
     return (
         <section className={ `main-layout ${toggleToolBar ? 'open' : 'close'}`}>
             <MailSorting toggleToolBar={toggleToolBar} setMails={setMails} mails={mails} />
             <header className="main-mail-header">
-                <article class="mail-logo">
+                <article className="mail-logo">
                     <button className="toggle-btn" onClick={toggleFolders}><i class="fa-solid fa-bars"></i></button>
-                    <img className="logo-img" src="https://www.logo.wine/a/logo/Gmail/Gmail-Logo.wine.svg" alt="" />
-                    <span>Gmail</span>
+                    <img className="logo-img" src="../../assets/img/gmailLogo.png" alt="" />
                 </article>
                 <SearchFilter filterBy={filterBy} onSetFilterBy={onSetFilterBy}/>
             </header>
