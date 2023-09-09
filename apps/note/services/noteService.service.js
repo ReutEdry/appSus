@@ -3,12 +3,13 @@ import { asyncStorageService } from '../../../services/async-storage.service.js'
 import { utilService } from '../../../services/util.service.js'
 
 const NOTES_KEY = 'notesDB'
+const DELETED_NOTES = 'deletedNotesDB'
 _createNotes()
 
 export const noteService = {
     query,
     removeTodo,
-    deleteNote,
+    removeNote,
     settingIsPin,
     getNewNote,
     save,
@@ -20,7 +21,7 @@ function query() {
         .then(notes => { return notes })
 }
 
-function deleteNote(noteId) {
+function removeNote(noteId) {
     return asyncStorageService.remove(NOTES_KEY, noteId)
 }
 
