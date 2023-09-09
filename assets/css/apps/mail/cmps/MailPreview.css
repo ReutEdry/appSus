@@ -1,13 +1,47 @@
+
+@media (max-width: 760px) { /* adjust the value 768px to the desired breakpoint */
+    .email-item {  
+        position: relative;
+        width: 300px;
+            grid-template-columns: 1fr 0.3fr; /* Two columns for from and time */
+            grid-template-rows: auto auto auto; /* Three rows layout */
+            grid-template-areas: 
+                "from time"
+                "subject subject"
+                "body body";   
+    }
+    .email-timestamp{
+        position: absolute;
+        right: 0;
+        top: 0;
+    }
+    .star{
+        display: none;
+    }
+}
+
+@media (min-width: 760px) {
+    .email-item{
+        display: grid; 
+     grid-template-columns: 0.5fr 1fr 1fr 0.3fr;
+        grid-template-rows: auto;  /* Single row layout */
+        grid-template-areas: 
+            "from subject body time";
+            line-height: 40px;
+    }
+
+    .email-from{
+        margin-left: 30px;
+    }
+   
+}
+
 .email-item {
     border-top: 1px solid #e8e8e8;
-    /* border-bottom: 1px solid #e8e8e8; */
-    display: grid; 
-    grid-template-columns: 0.5fr 1fr 1fr 0.3fr;
-    grid-auto-flow: column;
     align-items: left;
     cursor: pointer;
     transition: background-color 0.3s ease;
-    height: 40px;
+    
     align-items: center;
     -webkit-font-smoothing: antialiased;
     font-size: .875rem;
@@ -30,6 +64,7 @@
 }
 
 .email-subject {
+    grid-area: subject;
     flex: 1;
     text-align: left; 
      overflow: hidden;
@@ -44,13 +79,15 @@
 }
 
 .email-from{
+    grid-area: from;
     flex: 0.5;
     width: max-content;
-    margin-left: 30px;
+
     font-weight: bold;
 }
 
 .email-timestamp {
+    grid-area: time;
     text-align: center;
     font-weight: bold;
     font-size: 0.75rem;
@@ -58,6 +95,7 @@
 
 
 .email-body-preview{
+    grid-area: body;
     text-align: left;
     flex-shrink: 1;
 }
