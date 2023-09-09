@@ -6,7 +6,7 @@ export function MailPreview({mail}) {
     const fullDate = utilService.formatDate(mail.sentAt)
 
     return (
-        <Link className="mail-a-link" to={`/mail/${mail.id}`}>
+        <Link className="mail-a-link" to={`/mail/${mail.id}`}>  
             <section className="email-item">
                 <div className="email-from">{mail.from}</div>
                 <div className="email-subject">{mail.subject}</div>

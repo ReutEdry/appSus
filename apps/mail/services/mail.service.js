@@ -161,6 +161,7 @@ function getDeletedMails(){
     return mails
 }
 
+
 function getStarredMails(){
     const mails = storageService.loadFromStorage(STORAGE_KEY)
     const starredMails = mails.filter(mail => mail.isStar)
