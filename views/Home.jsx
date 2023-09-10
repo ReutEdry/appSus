@@ -7,8 +7,8 @@ export function Home() {
         <h1 className="title animate__animated animate__fadeIn">appSus</h1>
         <p className="description animate__animated animate__fadeIn">Your all-in-one app solution.</p>
         <div className="apps animate__animated animate__zoomIn">
-            <NavLink to="/mail" className="app-link mail-app">Mail App</NavLink>
-            <NavLink to="/note" className="app-link keep-app">Notes App</NavLink>  
+            <NavLink to="/mail" className="app-link mail-app">Gmail App</NavLink>
+            <NavLink to="/note" className="app-link keep-app">Keep App</NavLink>  
         </div>
     </div>
     <div className="waves">
