@@ -7,6 +7,7 @@ export function AddNote({ setNotes, notes }) {
     const [isColorForNewNoteReady, setIsColorForNewNoteReady] = useState(false)
     const [isNewNoteAdd, setNewNoteAdded] = useState(false)
     const [selectedColor, setSelectedColor] = useState('#ffffff')
+    const [isFormVisible, setFormVisible] = useState(false) // State to toggle form visibility
 
 
     const titleTextareaRef = useRef(null)
@@ -28,6 +29,7 @@ export function AddNote({ setNotes, notes }) {
                 titleTextareaRef.current.value = ''
                 txtTextareaRef.current.value = ''
                 setSelectedColor('#ffffff')
+                setFormVisible(false) ////
             })
             .catch(err => console.log('err', err))
         setNewNoteAdded(!isNewNoteAdd)
@@ -41,18 +43,25 @@ export function AddNote({ setNotes, notes }) {
     }
     return (
         <Fragment>
-            <form style={{ backgroundColor: selectedColor }} onSubmit={onSaveNote} className="add-note-form">
-                <textarea className="title-input" onClick={() => setNewNoteAdded(true)} ref={titleTextareaRef} onChange={onHandleChange} height="53px" name="title" id="title" cols="40" rows="1" placeholder="Title"></textarea>
-                <textarea className="txt-input" onClick={() => setNewNoteAdded(true)} ref={txtTextareaRef} onChange={onHandleChange} name="txt" id="txt" cols="40" rows="3" placeholder="Your note"></textarea>
-                <section className="add-note-features">
-                    <button onClick={toggleColorPalette} className="note-bgc">
-                        <i className="material-icons-outlined note-palette">
-                            palette
-                        </i>
-                    </button>
-                    <button className="save-form">Save</button>
-                </section>
-            </form>
+            {!isFormVisible &&
+                <div onClick={() => setFormVisible(!isFormVisible)}>
+                    <textarea className="title-input half-display" ref={titleTextareaRef} onChange={onHandleChange} height="53px" name="title" id="title" cols="40" rows="1" placeholder="Title"></textarea>
+                </div>
+            }
+            {isFormVisible &&
+                <form style={{ backgroundColor: selectedColor }} onSubmit={onSaveNote} className="add-note-form">
+                    <textarea className="title-input" onClick={() => setNewNoteAdded(true)} ref={titleTextareaRef} onChange={onHandleChange} height="53px" name="title" id="title" cols="40" rows="1" placeholder="Title"></textarea>
+                    <textarea className="txt-input" onClick={() => setNewNoteAdded(true)} ref={txtTextareaRef} onChange={onHandleChange} name="txt" id="txt" cols="40" rows="3" placeholder="Your note"></textarea>
+                    <section className="add-note-features">
+                        <button onClick={toggleColorPalette} className="note-bgc">
+                            <i className="material-icons-outlined note-palette">
+                                palette
+                            </i>
+                        </button>
+                        <button className="save-form">Save</button>
+                    </section>
+                </form>
+            }
             {isColorForNewNoteReady && <ColorSet newNote={newNote} selectedColor={selectedColor}
                 setSelectedColor={setSelectedColor} isNewNoteAdd={isNewNoteAdd} />}
 

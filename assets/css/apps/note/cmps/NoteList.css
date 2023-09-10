@@ -9,6 +9,8 @@
 
  .note-container {
      columns: 4 220px;
+     margin-block-end: 10px;
+     /* gap: 10px; */
  }
 
  .note-self {
@@ -17,6 +19,7 @@
      width: 238px;
      border-radius: 5px;
      border: 1px solid lightslategrey;
+     margin-bottom: 10px;
  }
 
  .noteChild {
@@ -64,11 +67,25 @@
      transition: 1s;
      background-color: rgba(255, 255, 255, 0.563);
      border-radius: 5px;
-     /* padding: 5px; */
  }
 
  .noteChild:hover img .edit-note-area {
-     /* opacity: 1; */
+     opacity: 1;
      /* transition: 1s; */
      background-color: rgba(255, 255, 255, 0.563);
+ }
+
+ .todo-btn {
+     background: none;
+     color: inherit;
+     border: none;
+     padding: 0;
+     font: inherit;
+     cursor: pointer;
+     outline: inherit;
+ }
+
+ .delete-btn-todo.material-icons-outlined {
+     font-size: 15px;
+     font-weight: bolder;
  }

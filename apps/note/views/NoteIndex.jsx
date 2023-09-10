@@ -60,7 +60,7 @@ export function NoteIndex() {
             <NoteNav setNotes={setNotes} />
             <header className="main-note-header">
                 <article className="note-logo">
-                    <img className="logo-note-img" src="https://logowik.com/content/uploads/images/google-keep3316.jpg" alt="" />
+                    <img className="logo-note-img" src="https://www.gstatic.com/images/branding/product/1x/keep_2020q4_48dp.png" alt="" />
                     <span>Keep</span>
                 </article>
                 <SearchNoteFilter />

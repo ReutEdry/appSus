@@ -62,7 +62,7 @@ export function NoteList({ setNotes, setIsPinned, setDelete, notes }) {
     function onOpenUpdateModal() {
         setModalEditing(!isModaEditlOpen)
     }
-    
+
     return (
         <section className="note-container">
             {
@@ -70,27 +70,27 @@ export function NoteList({ setNotes, setIsPinned, setDelete, notes }) {
                     <section className="noteChild">
                         <DynamicNote id={note.id} type={note.type} info={note.info} />
                         <section className="edit-note-area">
-                            <button onClick={() => onRemoveNote(note.id)}>
+                            <button title="delete the note" onClick={() => onRemoveNote(note.id)}>
                                 <i className="material-icons-outlined">delete</i>
                             </button>
-                            <button title="update" onClick={onOpenUpdateModal}>
+                            {/* <button title="update" onClick={onOpenUpdateModal}>
 
                                 <i className="material-symbols-outlined">
                                     edit_note
                                 </i>
-                            </button>
-                            <button onClick={() => onPinNote(note.id)}>
+                            </button> */}
+                            <button title="pin the note" onClick={() => onPinNote(note.id)}>
                                 <i className="material-icons-outlined">push_pin</i></button>
-                            <button onClick={() => onToggleColorDisplay(idx)} className="note-bgc">
+                            <button title="change bg-c" onClick={() => onToggleColorDisplay(idx)} className="note-bgc">
                                 <i className="material-icons-outlined note-palette">
                                     palette
                                 </i>
                             </button>
-                            <button onClick={() => onDuplicateNote(note)}><i className="material-icons-outlined">
+                            <button title="copy note" onClick={() => onDuplicateNote(note)}><i className="material-icons-outlined">
                                 content_copy
                             </i></button>
 
-                            <button><Link to={`/mail/${note.info.txt}/${note.info.title}`}><i className="material-icons-outlined">
+                            <button title="send to your email"><Link to={`/mail/${note.info.txt}/${note.info.title}`}><i className="material-icons-outlined">
                                 forward_to_inbox
                             </i></Link></button>
                         </section>

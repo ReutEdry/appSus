@@ -18,7 +18,8 @@ export function TodosNote({ info, id: noteId }) {
             <ul className="todoP">
                 {
                     todos.map(todo => <li key={todo.id} onClick={() => toTodoClick(todo.id)}>{todo.txt}
-                        <button onClick={(event) => onRemoveTodo(event, todos, todo.id)}><i className="material-icons-outlined">
+                        <button className="todo-btn" onClick={(event) => onRemoveTodo(event, todos, todo.id)}><i className="delete-btn-todo 
+                        material-icons-outlined">
                             close
                         </i></button></li>)
                 }

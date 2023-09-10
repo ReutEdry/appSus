@@ -11,45 +11,45 @@
 
 .color-btn-container {
     display: flex;
-
+    justify-content: center;
 }
 
 
 
 .color-btn.yellow {
     background-color: #e3e0cc;
-    border: 1px solid;
-    border-color: #cbbf53;
+    border: 1.9px solid;
+    border-color: #bbaa15;
 }
 
 .color-btn.peach {
     background-color: #e4d1d1;
-    border: 1px solid;
-    border-color: #ecc3c3;
+    border: 1.9px solid;
+    border-color: #ed9999;
 }
 
 .color-btn.purple {
     background-color: #b9b0b0;
-    border: 1px solid;
-    border-color: #b99a9a;
+    border: 1.9px solid;
+    border-color: #b78585;
 }
 
 .color-btn.pink {
     background-color: #d3bfdb;
-    border: 1px solid;
-    border-color: #d2aee0;
+    border: 1.9px solid;
+    border-color: #d28fec;
 }
 
 .color-btn.blue {
     background-color: #77aeae;
-    border: 1px solid;
-    border-color: #67b0b0;
+    border: 1.9px solid;
+    border-color: #3a9393;
 }
 
 .color-btn.green {
     background-color: #b5e7a0;
-    border: 1px solid;
-    border-color: #9fec7e;
+    border: 1.9px solid;
+    border-color: #519e2f;
     ;
 }
 

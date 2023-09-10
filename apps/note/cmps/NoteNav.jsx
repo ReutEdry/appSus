@@ -1,31 +1,25 @@
-import { TrashNote } from "./TrashNote.jsx"
 import { noteService } from "../services/noteService.service.js"
-const { useState, useEffect } = React
-
-
-
-
 
 export function NoteNav({ setNotes }) {
-    const [isTrashOpen, setTrashOpen] = useState(false)
-
-    // function onOpenTrash() {
-    //     setTrashOpen(!isTrashOpen)
-    // }
 
     function onSetNotes(val) {
         switch (val) {
             case 'deleted':
                 noteService.getDeletedNotes()
                     .then(notes => {
-                        if (!notes) return
-                        setNotes([notes])
+                        setNotes(notes)
+                    })
+                    .catch(error => {
+                        console.error('Error fetching deleted notes:', error);
                     })
                 break;
             case 'all':
                 noteService.query()
                     .then(note => {
                         setNotes(note)
+                    })
+                    .catch(error => {
+                        console.error('Error fetching all notes:', error);
                     })
                 break;
             default:
@@ -46,7 +40,6 @@ export function NoteNav({ setNotes }) {
                     <i className="material-icons-outlined">
                         delete
                     </i>
-                    {/* {isTrashOpen && <TrashNote />} */}
                     Trash
                 </li>
             </ul>

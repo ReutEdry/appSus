@@ -32,7 +32,9 @@ function removeNote(noteId) {
     console.log(noteId)
     return asyncStorageService.get(NOTES_KEY, noteId)
         .then(note => {
-            storageService.saveToStorage(DELETED_NOTES, note)
+            const deletedNotes = storageService.loadFromStorage(DELETED_NOTES) || []
+            deletedNotes.push(note)
+            storageService.saveToStorage(DELETED_NOTES, deletedNotes)
             return asyncStorageService.remove(NOTES_KEY, noteId)
         })
 }
@@ -88,10 +90,36 @@ function getDemoData() {
             type: 'NoteTxt',
             isPinned: true,
             style: {
-                backgroundColor: '#ffffff'
+                backgroundColor: '#b9b0b0'
             },
             info: {
                 txt: 'Fullstack Me Baby!'
+            }
+        },
+        {
+            id: 'n112',
+            createdAt: 1112222,
+            type: 'NoteTxt',
+            isPinned: true,
+            style: {
+                backgroundColor: '#d3bfdb'
+            },
+            info: {
+                title: 'hello',
+                txt: 'HEY'
+            }
+        },
+        {
+            id: 'n111',
+            createdAt: 1112222,
+            type: 'NoteTxt',
+            isPinned: true,
+            style: {
+                backgroundColor: '#77aeae'
+            },
+            info: {
+                title: 'should I woke up to CR?',
+                txt: 'NO'
             }
         },
         {
@@ -99,7 +127,7 @@ function getDemoData() {
             type: 'NoteImg',
             isPinned: false,
             info: {
-                url: 'https://loremflickr.com/g/320/240/paris,girl/all',
+                url: 'https://loremflickr.com/cache/resized/65535_50623854921_872e491f0a_320_240_nofilter.jpg',
                 title: 'Bobi and Me'
             },
             style: {
@@ -120,7 +148,35 @@ function getDemoData() {
             style: {
                 backgroundColor: '#ffffff'
             },
-        }
+        },
+        {
+            id: 'n104',
+            type: 'NoteTodos',
+            isPinned: false,
+            info: {
+                title: 'Things to do:',
+                todos: [
+                    { id: utilService.makeId(), txt: 'Eat', doneAt: null },
+                    { id: utilService.makeId(), txt: 'Sleep', doneAt: 187111111 },
+                    { id: utilService.makeId(), txt: 'Repeat', doneAt: 187111111 }
+                ]
+            },
+            style: {
+                backgroundColor: '#e3e0cc'
+            },
+        },
+        {
+            id: 'n1022',
+            type: 'NoteImg',
+            isPinned: false,
+            info: {
+                url: 'https://loremflickr.com/cache/resized/65535_52919863006_8ed0a8ca32_320_240_nofilter.jpg',
+                title: 'Me and Nugets'
+            },
+            style: {
+                backgroundColor: '#b5e7a0'
+            }
+        },
     ]
 
     return notes
