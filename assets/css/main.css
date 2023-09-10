@@ -10,9 +10,10 @@
 /* @import './basics/layout.css'; */
 
 /* Views */
-@import './views/home.css';
+@import './views/Home.css';
 @import './apps/mail/views/MailIndex.css';
 @import './apps/mail/views/MailDetails.css';
+@import './views/About.css';
 
 @import './apps/note/views/NoteIndex.css';
 @import './apps/note/views/NoteIndex.css';

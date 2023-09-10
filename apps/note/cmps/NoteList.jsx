@@ -62,7 +62,7 @@ export function NoteList({ setNotes, setIsPinned, setDelete, notes }) {
     function onOpenUpdateModal() {
         setModalEditing(!isModaEditlOpen)
     }
-
+    
     return (
         <section className="note-container">
             {
@@ -90,9 +90,9 @@ export function NoteList({ setNotes, setIsPinned, setDelete, notes }) {
                                 content_copy
                             </i></button>
 
-                            <button><i className="material-icons-outlined">
+                            <button><Link to={`/mail/${note.info.txt}/${note.info.title}`}><i className="material-icons-outlined">
                                 forward_to_inbox
-                            </i><Link to={`/mail/${note.info}`}></Link></button>
+                            </i></Link></button>
                         </section>
                     </section>
                     {isModaEditlOpen && <NoteEdit />}
