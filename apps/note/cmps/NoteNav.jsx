@@ -7,11 +7,9 @@ export function NoteNav({ setNotes }) {
             case 'deleted':
                 noteService.getDeletedNotes()
                     .then(notes => {
-                        if (!notes || !notes.length) {
-                            return
-                        } else {
-                            setNotes(notes)
-                        }
+                        console.log(notes)
+                        console.log('hey from else')
+                        setNotes(notes)
                     })
                     .catch(error => {
                         console.error('Error fetching deleted notes:', error);
