@@ -17,8 +17,9 @@ export function NoteNav({ setNotes }) {
         switch (val) {
             case 'deleted':
                 noteService.getDeletedNotes()
-                    .then(note => {
-                        setNotes([note])
+                    .then(notes => {
+                        if (!notes) return
+                        setNotes([notes])
                     })
                 break;
             case 'all':
