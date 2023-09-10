@@ -5,13 +5,13 @@ export function About() {
         <div className="about-layout-cards">
 
             <div className="member-card">
-                <img src="./../assets/img/saharImg.jpeg" alt="" />
+                <img src="assets/img/saharImg.jpeg" alt="" />
                 <h3 className="member-name">Sahar Machpud</h3>
                 <p className="member-role">Coding Academy</p>
             </div>
 
             <div className="member-card">
-                <img src="./../assets/img/reutImg.jpg" alt="" />
+                <img src="assets/img/reutImg.jpg" alt="" />
                 <h3 className="member-name">Reut Edry</h3>
                 <p className="member-role">Coding Academy</p>
             </div>

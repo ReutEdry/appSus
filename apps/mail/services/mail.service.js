@@ -113,7 +113,6 @@ function getDefaultFilter() {
     return { title: '' }
 }
 
-
 function _createMail(from ,subject, body, sentAt) {
     return {
         id: utilService.makeId(),
@@ -151,7 +150,6 @@ function getDeletedMails(){
     console.log('mails:', mails)
     return mails
 }
-
 
 function getStarredMails(){
     const mails = storageService.loadFromStorage(STORAGE_KEY)

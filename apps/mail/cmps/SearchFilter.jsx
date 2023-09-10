@@ -23,7 +23,7 @@ export function SearchFilter({filterBy, onSetFilterBy}){
             <span className="material-symbols-outlined">
                 search
             </span>
-            <img className="small-img" src="./../../assets/img/saharImg.jpeg" alt="" />
+            <img className="small-img" src="assets/img/saharImg.jpeg" alt="" />
         </section>
     )
 }
