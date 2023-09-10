@@ -5,7 +5,7 @@ import { SearchNoteFilter } from "../cmps/SearchNoteFilter.jsx"
 import { noteService } from "../services/noteService.service.js"
 
 const { useState, useEffect } = React
-const { useParams } = ReactRouterDOM
+const { useParams, useNavigate } = ReactRouterDOM
 
 
 export function NoteIndex() {
@@ -17,6 +17,7 @@ export function NoteIndex() {
     const [isEmailNoteAdded, setEmailNoteAdded] = useState(false)
     const params = useParams()
     let isParamsNotFull = JSON.stringify(params) === JSON.stringify({})
+    const navigate = useNavigate()
 
     useEffect(() => {
         noteService.query()
@@ -46,15 +47,17 @@ export function NoteIndex() {
                     const updatedNotes = [...notes, res]
                     setNotes(updatedNotes)
                     setEmailNoteAdded(true)
+                    navigate('/note')
                 })
         }
+
     }, [isParamsNotFull])
 
     if (!pinneds) return <div className="loading Pinned notes">loading Pinned notes</div>
     if (!unPinneds) return <div className="loading unPinned notes">loading unPinned notes</div>
     return (
         <section className="main-note-layout">
-            <NoteNav />
+            <NoteNav setNotes={setNotes} />
             <header className="main-note-header">
                 <article className="note-logo">
                     <img className="logo-note-img" src="https://logowik.com/content/uploads/images/google-keep3316.jpg" alt="" />

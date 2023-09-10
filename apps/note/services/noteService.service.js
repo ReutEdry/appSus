@@ -14,7 +14,8 @@ export const noteService = {
     getNewNote,
     save,
     saveColorChange,
-    makeNewNoteFromEmail
+    makeNewNoteFromEmail,
+    getDeletedNotes
 }
 
 function query() {
@@ -22,8 +23,18 @@ function query() {
         .then(notes => { return notes })
 }
 
+function getDeletedNotes() {
+    return asyncStorageService.query(DELETED_NOTES)
+        .then(notes => { return notes })
+}
+
 function removeNote(noteId) {
-    return asyncStorageService.remove(NOTES_KEY, noteId)
+    console.log(noteId)
+    return asyncStorageService.get(NOTES_KEY, noteId)
+        .then(note => {
+            storageService.saveToStorage(DELETED_NOTES, note)
+            return asyncStorageService.remove(NOTES_KEY, noteId)
+        })
 }
 
 function settingIsPin(noteId) {

@@ -75,7 +75,7 @@ export function NoteList({ setNotes, setIsPinned, setDelete, notes }) {
                             </button>
                             <button title="update" onClick={onOpenUpdateModal}>
 
-                                <i class="material-symbols-outlined">
+                                <i className="material-symbols-outlined">
                                     edit_note
                                 </i>
                             </button>
