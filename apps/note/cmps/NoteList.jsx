@@ -63,8 +63,7 @@ export function NoteList({ setNotes, setIsPinned, setDelete, notes }) {
         setModalEditing(!isModaEditlOpen)
     }
 
-    console.log(notes)
-    if (!notes.length || !notes) return <h1>loading</h1>
+    if (!notes.length || !notes) return
     return (
         <section className="note-container">
             {
