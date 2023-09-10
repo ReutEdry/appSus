@@ -53,7 +53,7 @@ export function MailIndex() {
             <header className="main-mail-header">
                 <article className="mail-logo">
                     <button className="toggle-btn" onClick={toggleFolders}><i class="fa-solid fa-bars"></i></button>
-                    <img className="logo-img" src="../../assets/img/gmailLogo.png" alt="" />
+                    <img className="logo-img" src="assets/img/gmailLogo.png" alt="" />
                 </article>
                 <SearchFilter filterBy={filterBy} onSetFilterBy={onSetFilterBy}/>
             </header>
